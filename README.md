@@ -1,5 +1,9 @@
 # demo-cloud-app-swift
 
+<p align="center">
+  <img src="demo-images/preview1.png" width="200" alt="accessibility text">
+  <img src="demo-images/preview2.png" width="200" alt="accessibility text">
+</p>
 
 ## SwiftUI Token App
 This is a simple SwiftUI app that demonstrates how to expose a token and pass it through a WebView. The app allows users to input a token and displays a WebView that loads a webpage using the provided token for authentication.
