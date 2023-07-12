@@ -4,6 +4,7 @@
 //
 //  Created by Daniel Diaz on 10/07/23.
 //
+
 import SwiftUI
 import WebKit
 
@@ -13,7 +14,6 @@ struct WebViewWrapper: UIViewRepresentable {
 
         init(_ parent: WebViewWrapper) {
             self.parent = parent
-            
             let webConfiguration = WKWebpagePreferences()
             webConfiguration.allowsContentJavaScript = true
         }
@@ -22,15 +22,29 @@ struct WebViewWrapper: UIViewRepresentable {
             if message.name == Constants.WebView.javascriptHandler {
                 if let messageBody = message.body as? String {
                     // Handle the received message from the web view
-                    print("Received message from web view: \(messageBody)")
+                    showAlert(message: "Received message from web view: \(messageBody) . Please, send the authentication token.")
                 } else if let messageBody = message.body as? [String: Any] {
                     // Handle the received message as a dictionary
-                    print("Received message as dictionary from web view: \(messageBody)")
+                    showAlert(message: "Received message as dictionary from web view: \(messageBody) . Please, send the authentication token.")
                 } else {
                     // Handle unsupported type gracefully
-                    print("Received message of unsupported type from web view")
+                    showAlert(message: "Received message of unsupported type from web view")
                 }
             }
+        }
+        
+        func showAlert(message: String) {
+            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                  let window = windowScene.windows.first,
+                  let viewController = window.rootViewController else {
+                return
+            }
+            
+            let alertController = UIAlertController(title: "Message", message: message, preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            
+            viewController.present(alertController, animated: true, completion: nil)
         }
     }
 
@@ -59,3 +73,4 @@ struct WebViewWrapper: UIViewRepresentable {
         // No updates needed
     }
 }
+
