@@ -22,8 +22,11 @@ This is a simple SwiftUI app that demonstrates how to expose a token and pass it
 1. Open the project in Xcode.
 2. Build and run the app on the iOS simulator or a physical device.
 3. The app will launch and display a screen with a text field and a button.
-4. Enter your token in the text field and tap the "Sent Auth Token" button.
+4. Enter your initial token in the text field and tap the "Sent Init Token" button.
 5. The WebView will load a webpage using the provided token for authentication.
+6. Make sure your token has opt in flow, go to wallet view to start "authentication" flow.
+7. Tap on the continue button, a window will be displayed intercepting the javascript.
+8. Use the text field to send a new token to complete the authentication.
 
 #### Optional
 6. Can simulate a webview event message tapping on "Opt in event" button, review xcode logs to get default message.
