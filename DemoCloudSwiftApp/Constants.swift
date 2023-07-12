@@ -10,11 +10,8 @@ import Foundation
 struct Constants {
     struct WebView {
         static let javascriptHandler = "flipgiveAppInterface"
-        static let url: String = {
-            guard let token = ProcessInfo.processInfo.environment["FG_DEMO_TOKEN"] else {
-                fatalError("TOKEN environment variable is missing")
-            }
-            return "https://cloud.almostflip.com/?token=\(token)"
-        }()
+        static let uatUrl = "http://cloud.flipgive-test.com"
+        static let stageUrl = "https://cloud.almostflip.com"
+        static let scriptGetWebViewMessage = "(function() { window?.webkit?.messageHandlers.flipgiveAppInterface.postMessage('USER_DATA_REQUIRED'); })()"
     }
 }

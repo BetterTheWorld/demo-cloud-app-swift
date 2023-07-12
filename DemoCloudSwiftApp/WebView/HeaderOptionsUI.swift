@@ -12,17 +12,25 @@ struct HeaderOptionsUI: View {
     let onTapSendToken: () -> Void
     let onTapTriggerWebviewEvent: () -> Void
 
+
+    @Binding var isToggled: Bool
+    @Binding var isInit: Bool
     @Binding var inputValue: String
 
     var body: some View {
         VStack {
             Text(title)
                 .font(.title)
+
+            Toggle(isOn: $isToggled) {
+                Text(isToggled ? "Stage" : "UAT")
+            }
+            .scaleEffect(0.9)
     
             TextField("Token", text: $inputValue)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .padding()
-            
+
             HStack {
                 Button(action: {
                     onTapSendToken()
@@ -30,7 +38,7 @@ struct HeaderOptionsUI: View {
                     HStack {
                         Image(systemName: "paperplane.fill")
                             .font(.body)
-                        Text("Send Auth Token")
+                        Text(isInit ? "Send Auth Token" : "Add url Token")
                     }
                 })
                 
@@ -57,6 +65,9 @@ struct HeaderOptionsUI_Previews: PreviewProvider {
             print("hi")
         }, onTapTriggerWebviewEvent: {
             print("hi")
-        }, inputValue: .constant(""))
+        }, isToggled: .constant(true),
+                        isInit: .constant(false),
+        inputValue: .constant("")
+        )
     }
 }

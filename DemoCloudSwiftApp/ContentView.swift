@@ -14,7 +14,7 @@ struct ContentView: View {
             VStack {
                 Text("Welcome to Native Swift Demo app")
 
-                NavigationLink(destination: WebViewUI(webView: WKWebView(), contentURL: URL(string: Constants.WebView.url)!)) {
+                NavigationLink(destination: WebViewUI(webView: WKWebView())) {
                     Text("Go to WebView")
                         .font(.headline)
                         .padding()

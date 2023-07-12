@@ -9,6 +9,8 @@ import SwiftUI
 import WebKit
 
 struct WebViewWrapper: UIViewRepresentable {
+    let webView: WKWebView
+
     class Coordinator: NSObject, WKScriptMessageHandler {
         var parent: WebViewWrapper
 
@@ -22,10 +24,10 @@ struct WebViewWrapper: UIViewRepresentable {
             if message.name == Constants.WebView.javascriptHandler {
                 if let messageBody = message.body as? String {
                     // Handle the received message from the web view
-                    showAlert(message: "Received message from web view: \(messageBody) . Please, send the authentication token.")
+                    showAlert(message: "Received message from web view: \(messageBody) . Please, send new authentication token.")
                 } else if let messageBody = message.body as? [String: Any] {
                     // Handle the received message as a dictionary
-                    showAlert(message: "Received message as dictionary from web view: \(messageBody) . Please, send the authentication token.")
+                    showAlert(message: "Received message as dictionary from web view: \(messageBody) . Please, send new authentication token.")
                 } else {
                     // Handle unsupported type gracefully
                     showAlert(message: "Received message of unsupported type from web view")
@@ -47,9 +49,6 @@ struct WebViewWrapper: UIViewRepresentable {
             viewController.present(alertController, animated: true, completion: nil)
         }
     }
-
-    let webView: WKWebView
-    let contentURL: URL
     
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
