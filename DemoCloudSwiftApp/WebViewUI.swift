@@ -24,20 +24,19 @@ struct WebViewUI: View {
 
                     if (isInitializated) {
                         injectJavaScript(javascriptCode: "(function() { window?.updateToken?.('\(tokenValue)') })()")
+                        tokenValue = ""
                     }
 
                     if (!isInitializated && !tokenValue.isEmpty) {
                         isInitializated = true;
                     }
-                    
-                    tokenValue = ""
 
                 },
                                 onTapTriggerWebviewEvent: {
                     injectJavaScript(javascriptCode: Constants.WebView.scriptGetWebViewMessage)
                 }, isToggled: $isStage, isInit: $isInitializated, inputValue: $tokenValue)
             }
-            
+
             if isInitializated {
                 WebViewWrapper(webView: webView)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -60,6 +59,7 @@ struct WebViewUI: View {
             if isInitializated {
                 // reset webview state
                 isInitializated = false;
+                tokenValue = ""
             }
         }
     }

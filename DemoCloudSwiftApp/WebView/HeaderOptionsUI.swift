@@ -23,7 +23,7 @@ struct HeaderOptionsUI: View {
                 .font(.title)
 
             Toggle(isOn: $isToggled) {
-                Text(isToggled ? "Stage" : "UAT")
+                Text(isToggled ? "STAGE" : "UAT")
             }
             .scaleEffect(0.9)
     

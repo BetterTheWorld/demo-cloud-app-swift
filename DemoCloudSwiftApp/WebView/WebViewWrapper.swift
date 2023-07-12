@@ -24,7 +24,10 @@ struct WebViewWrapper: UIViewRepresentable {
             if message.name == Constants.WebView.javascriptHandler {
                 if let messageBody = message.body as? String {
                     // Handle the received message from the web view
-                    showAlert(message: "Received message from web view: \(messageBody) . Please, send new authentication token.")
+                    if (messageBody == "USER_DATA_REQUIRED") {
+                        // Trigger event on user data
+                        showAlert(message: "Received message from web view: \(messageBody) . Please, send new authentication token.")
+                    }
                 } else if let messageBody = message.body as? [String: Any] {
                     // Handle the received message as a dictionary
                     showAlert(message: "Received message as dictionary from web view: \(messageBody) . Please, send new authentication token.")
