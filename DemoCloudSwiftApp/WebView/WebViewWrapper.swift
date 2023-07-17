@@ -28,6 +28,14 @@ struct WebViewWrapper: UIViewRepresentable {
                         // Trigger event on user data
                         showAlert(message: "Received message from web view: \(messageBody) . Please, send new authentication token.")
                     }
+
+                    if (messageBody.contains(Constants.MessageTypes.newWindow)) {
+                        let urlPayload = messageBody.replacingOccurrences(of: Constants.MessageTypes.newWindow, with: "")
+                        if let url = URL(string: urlPayload) {
+                            UIApplication.shared.open(url)
+                        }
+                    }
+
                 } else if let messageBody = message.body as? [String: Any] {
                     // Handle the received message as a dictionary
                     showAlert(message: "Received message as dictionary from web view: \(messageBody) . Please, send new authentication token.")

@@ -14,4 +14,8 @@ struct Constants {
         static let stageUrl = "https://cloud.almostflip.com"
         static let scriptGetWebViewMessage = "(function() { window?.webkit?.messageHandlers.flipgiveAppInterface.postMessage('USER_DATA_REQUIRED'); })()"
     }
+    struct MessageTypes {
+        static let optIn = "USER_DATA_REQUIRED"
+        static let newWindow = "OPEN_IN_BROWSER::"
+    }
 }

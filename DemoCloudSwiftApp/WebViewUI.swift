@@ -77,7 +77,7 @@ struct WebViewUI: View {
             }
         }
     }
-    
+
     private func loadURL() {
         // Load your desired web content using a URL
         if var urlComponents = URLComponents(string: isStage ? Constants.WebView.stageUrl : Constants.WebView.uatUrl) {
